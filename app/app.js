@@ -5,7 +5,8 @@ myNinjaApp.config(['$routeProvider', function($routeProvider){
 
     $routeProvider
         .when('/home', {
-            templateUrl: 'views/home.html'
+            templateUrl: 'views/home.html',
+            controller: 'NinjaController'
         })
         .when('/directory', {
             templateUrl: 'views/directory.html',
@@ -22,7 +23,7 @@ myNinjaApp.config(['$routeProvider', function($routeProvider){
 
 // myNinjaApp.controller('NinjaController', function($scope){
 // Variable names sometimes need to be protected from minification
-myNinjaApp.controller('NinjaController', ['$scope', function($scope){
+myNinjaApp.controller('NinjaController', ['$scope', '$http', function($scope, $http){
 
     // The scope object is the binding between
     // the HTML view and the JS controller
@@ -46,31 +47,11 @@ myNinjaApp.controller('NinjaController', ['$scope', function($scope){
         
     };
 
-    $scope.ninjas = [
-        {
-            name: 'Yoshi',
-            belt: 'green',
-            rate: 50,
-            available: true
-        },
-        {
-            name: 'Crystal',
-            belt: 'red',
-            rate: 30,
-            available: true
-        },
-        {
-            name: 'Ryu',
-            belt: 'orange',
-            rate: 10,
-            available: true
-        },
-        {
-            name: 'Shaun',
-            belt: 'black',
-            rate: 1000,
-            available: true
-        }
-    ];
+    $http({
+        method: 'GET',
+        url: 'data/ninjas.json'
+     }).then(function(response){
+        $scope.ninjas = response.data;
+     }); 
 
 }]);
