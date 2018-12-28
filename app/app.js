@@ -1,9 +1,20 @@
-var myNinjaApp = angular.module('myNinjaApp', []);
+var myNinjaApp = angular.module('myNinjaApp', ['ngRoute']);
 
-// myNinjaApp.config(function(){
-//     // Preparation
-//     // Runs before the application runs
-// });
+// Preparation - runs before the application runs
+myNinjaApp.config(['$routeProvider', function($routeProvider){
+
+    $routeProvider
+        .when('/home', {
+            templateUrl: 'views/home.html'
+        })
+        .when('/directory', {
+            templateUrl: 'views/directory.html',
+            controller: 'NinjaController'
+        }).otherwise({
+            redirectTo: '/home'
+        });
+
+}]);
 
 // myNinjaApp.run(function(){
 //     // Fires when the application runs
@@ -28,9 +39,11 @@ myNinjaApp.controller('NinjaController', ['$scope', function($scope){
             rate: parseInt($scope.newninja.rate),
             available: true
         });  
+
         $scope.newninja.name = "";
         $scope.newninja.belt = "";
         $scope.newninja.rate = "";
+        
     };
 
     $scope.ninjas = [
@@ -38,7 +51,7 @@ myNinjaApp.controller('NinjaController', ['$scope', function($scope){
             name: 'Yoshi',
             belt: 'green',
             rate: 50,
-            available: true,
+            available: true
         },
         {
             name: 'Crystal',
