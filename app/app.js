@@ -65,6 +65,10 @@ myNinjaApp.controller('NinjaController', ['$scope', '$http', function($scope, $h
         
     };
 
+    $scope.removeAll = function(){
+        $scope.ninjas = [];
+    };
+
     $http({
         method: 'GET',
         url: 'data/ninjas.json'
