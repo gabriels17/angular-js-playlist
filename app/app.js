@@ -21,6 +21,22 @@ myNinjaApp.config(['$routeProvider', function($routeProvider){
 //     // Fires when the application runs
 // });
 
+myNinjaApp.directive('randomNinja', [function(){
+
+    return {
+        restrict: 'E',
+        scope: {
+            ninjas: '=',
+            title: '='
+        },
+        templateUrl: 'views/random.html',
+        controller: function($scope){
+            $scope.random = Math.floor(Math.random() * 4);
+        }
+    };
+
+}]);
+
 // myNinjaApp.controller('NinjaController', function($scope){
 // Variable names sometimes need to be protected from minification
 myNinjaApp.controller('NinjaController', ['$scope', '$http', function($scope, $http){
