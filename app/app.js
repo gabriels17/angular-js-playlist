@@ -1,4 +1,4 @@
-var myNinjaApp = angular.module('myNinjaApp', ['ngRoute']);
+var myNinjaApp = angular.module('myNinjaApp', ['ngRoute', 'ngAnimate']);
 
 // Preparation - runs before the application runs
 myNinjaApp.config(['$routeProvider', function($routeProvider){
@@ -30,6 +30,8 @@ myNinjaApp.directive('randomNinja', [function(){
             title: '='
         },
         templateUrl: 'views/random.html',
+        transclude: true,
+        replace: true,
         controller: function($scope){
             $scope.random = Math.floor(Math.random() * 4);
         }
